@@ -1,0 +1,9 @@
+{% if latest_poste_list %}
+    <ul>
+    {% for poste in latest_poste_list %}
+       <li><a href="{% url 'recrutement:details' poste.id %}">{{ poste.titre_poste }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No poste are available.</p>
+{% endif %}

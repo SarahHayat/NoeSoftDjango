@@ -1,0 +1,43 @@
+<div style="display: flex">
+    <section style="width: 50%; padding: 5%; text-align: center">
+        <h1>{{ poste.titre_poste }}</h1>
+        <ul>
+            <li>{{ poste.lieu_poste }}</li>
+            <li>{{ poste.description }}</li>
+        </ul>
+    </section>
+    <section style="width: 50%; padding: 5%; text-align: center">
+        <h1> TA CANDIDATURE</h1>
+        <form action="{% url 'recrutement:postuler' poste.id %}" method="post">
+            {% csrf_token %}
+
+            <input type="hidden" value="{{ poste.id }}" name="id">
+            <div>
+                <label>Prénom</label>
+                <input type="text" name="prenom" id="prenom" required>
+            </div>
+            <div>
+                <label>Nom</label>
+                <input type="text" name="nom" id="nom" required>
+            </div>
+            <div>
+                <label>Emaim</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div>
+                <label>Téléphone</label>
+                <input type="text" name="telephone" id="telephone" maxlength="10" required>
+            </div>
+{#            <div>#}
+{#                <label>Cv</label>#}
+{#                <input type="file" name="cv" id="cv" required>#}
+{#            </div>#}
+            <div>
+                <label>Message</label>
+                <textarea name="message" id="message"></textarea>
+            </div>
+
+            <input type="submit" value="POSTULER">
+        </form>
+    </section>
+</div>
