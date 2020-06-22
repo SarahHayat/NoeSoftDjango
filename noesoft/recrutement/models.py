@@ -25,3 +25,4 @@ class Candidat(models.Model):
 class Poste_Candidat(models.Model):
     id_candidat = models.ForeignKey(Candidat, on_delete=models.CASCADE)
     id_poste = models.ForeignKey(Poste, on_delete=models.CASCADE)
+
