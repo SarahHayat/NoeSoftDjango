@@ -1,0 +1,71 @@
+
+
+.liste a {
+    font-size: 2em;
+    color: #458082;
+    text-decoration: none;
+}
+.liste a:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.liste {
+    text-align: center;
+    list-style: none;
+    align-self: center;
+    padding-inline-start: 0;
+}
+
+.liste div{
+    padding: 5%;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin: 5%;
+}
+
+.liste div:hover{
+    border: solid black 3px;
+}
+
+.poste {
+    display: flex;
+    margin: 5%;
+}
+
+.poste ul{
+    list-style: none;
+    text-align: left;
+}
+.candidat {
+    width: 50%;
+    padding: 3%;
+    text-align: center;
+    background: rgba(121, 208, 201, 0.63);
+    align-items: center;
+}
+
+.candidat div {
+    padding: 3%;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+
+.candidat h1 {
+    color: #458082;
+}
+
+form{
+    text-align: -webkit-center;
+}
+img{
+    height: 100px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 1px 15px 20px -10px grey;
+}

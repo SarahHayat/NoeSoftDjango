@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.views import generic
+from django.http import HttpResponseRedirect
+
 from django.urls import reverse
 
 from .models import Poste, Candidat, Poste_Candidat
-from django.template import loader
+
 
 
 def index(request):
@@ -28,7 +28,6 @@ def postuler(request, poste_id):
         telephone = request.POST.get('telephone')
         message = request.POST.get('message')
     except (KeyError, Poste.DoesNotExist):
-        # Redisplay the question voting form.
         return render(request, 'recrutement/details.html', {
             'poste': poste,
             'error_message': "Vous n'avez pas rempli le formulaire.",
@@ -49,10 +48,6 @@ def postuler(request, poste_id):
         )
         poste_candidat.save()
 
-
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
         return HttpResponseRedirect(reverse('recrutement:result', args=(poste.id, candidat.id)))
 
 

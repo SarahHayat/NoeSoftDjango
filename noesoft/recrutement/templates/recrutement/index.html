@@ -1,9 +1,25 @@
+{#{% extends "recrutement/header.html" %}#}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'recrutement/style.css' %}">
+<header>
+    <div class="logo">
+        <img src="{% static "recrutement/images/logo.png" %}" alt="logo">
+    </div>
+    <div>
+
+    </div>
+</header>
+<body>
 {% if latest_poste_list %}
-    <ul>
-    {% for poste in latest_poste_list %}
-       <li><a href="{% url 'recrutement:details' poste.id %}">{{ poste.titre_poste }}</a></li>
-    {% endfor %}
+    <ul class="liste">
+        {% for poste in latest_poste_list %}
+            <div>
+                <li><a href="{% url 'recrutement:details' poste.id %}">{{ poste.titre_poste }}</a></li>
+            </div>
+        {% endfor %}
     </ul>
 {% else %}
     <p>No poste are available.</p>
 {% endif %}
+</body>
