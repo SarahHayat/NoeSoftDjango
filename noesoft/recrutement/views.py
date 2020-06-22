@@ -21,13 +21,11 @@ def detail(request, poste_id):
 def postuler(request, poste_id):
     poste = get_object_or_404(Poste, pk=poste_id)
     try:
-        id = request.get(pk=request.POST['id'])
-        prenom = Candidat(request.get(prenom=request.POST['prenom']))
-        nom = Candidat(request.get(nom=request.POST['nom']))
-        email = Candidat(request.get(prenom=request.POST['email']))
-        telephone = Candidat(request.get(prenom=request.POST['telephone']))
-        # cv = request.get(prenom=request.POST['cv'])
-        message = Candidat(request.get(prenom=request.POST['message']))
+        prenom = request.POST.get('prenom')
+        nom = request.POST.get('nom')
+        email = request.POST.get('email')
+        telephone = request.POST.get('telephone')
+        message = request.POST.get('message')
     except (KeyError, Poste.DoesNotExist):
         # Redisplay the question voting form.
         return render(request, 'recrutement/details.html', {
@@ -35,13 +33,15 @@ def postuler(request, poste_id):
             'error_message': "Vous n'avez pas rempli le formulaire.",
         })
     else:
+        candidat = Candidat.objects.create(
+            prenom=prenom,
+            nom=nom,
+            email=email,
+            telephone=telephone,
+            message=message,
+        )
 
-        prenom.save()
-        nom.save()
-        email.save()
-        telephone.save()
-       # cv.save()
-        message.save()
+        candidat.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
