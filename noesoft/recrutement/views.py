@@ -50,11 +50,7 @@ def postuler(request, poste_id):
 
         send_mail(
             'Votre candidature au poste de ' + poste.titre_poste,
-            'Bonjour ' + prenom + " "
-            "Merci pour votre candidature au poste de " + poste.titre_poste + "."
-            "Nous reviendrons vers vous prochainement. "
-            "Cordialement,"
-            "L'équipe NoéSoft",
+            'Bonjour ' + prenom + "\n\n Merci pour votre candidature au poste de " + poste.titre_poste + ". Nous reviendrons vers vous prochainement.\n\n Cordialement, \n l'équipe NoéSoft",
             'talents@noesoft.fr',
             [email],
             fail_silently=False,
