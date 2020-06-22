@@ -7,4 +7,5 @@ urlpatterns = [
     # ex: /recrutement/5/
     path('<int:poste_id>/', views.detail, name='details'),
     path('<int:poste_id>/postuler/', views.postuler, name='postuler'),
+    path('<int:poste_id>/result/<int:candidat_id>', views.result, name='result'),
 ]

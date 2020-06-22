@@ -53,4 +53,10 @@ def postuler(request, poste_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('recrutement:details', args=(poste.id,)))
+        return HttpResponseRedirect(reverse('recrutement:result', args=(poste.id, candidat.id)))
+
+
+def result(request, poste_id, candidat_id):
+    poste = get_object_or_404(Poste, pk=poste_id)
+    candidat = get_object_or_404(Candidat, pk=candidat_id)
+    return render(request, 'recrutement/result.html', {'poste': poste, 'candidat': candidat})
