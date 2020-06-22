@@ -30,7 +30,7 @@
 
 .poste {
     display: flex;
-    margin: 5%;
+
 }
 
 .poste ul {
@@ -56,6 +56,21 @@
 
 .candidat h1 {
     color: #458082;
+}
+
+.redirect {
+    padding: 3%;
+}
+
+.redirect a {
+
+    color: #458082;
+    text-decoration: none;
+}
+
+.redirect a:hover {
+    color: black;
+    text-decoration: underline;
 }
 
 form {

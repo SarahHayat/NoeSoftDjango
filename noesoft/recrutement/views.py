@@ -1,10 +1,10 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
 from django.urls import reverse
 
 from .models import Poste, Candidat, Poste_Candidat
-
 
 
 def index(request):
@@ -47,6 +47,18 @@ def postuler(request, poste_id):
             id_poste=poste,
         )
         poste_candidat.save()
+
+        send_mail(
+            'Votre candidature au poste de ' + poste.titre_poste,
+            'Bonjour ' + prenom + " "
+            "Merci pour votre candidature au poste de " + poste.titre_poste + "."
+            "Nous reviendrons vers vous prochainement. "
+            "Cordialement,"
+            "L'équipe NoéSoft",
+            'talents@noesoft.fr',
+            [email],
+            fail_silently=False,
+        )
 
         return HttpResponseRedirect(reverse('recrutement:result', args=(poste.id, candidat.id)))
 
