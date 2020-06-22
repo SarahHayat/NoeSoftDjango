@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
 
-from .models import Poste, Candidat
+from .models import Poste, Candidat, Poste_Candidat
 from django.template import loader
 
 
@@ -24,6 +24,7 @@ def postuler(request, poste_id):
         prenom = request.POST.get('prenom')
         nom = request.POST.get('nom')
         email = request.POST.get('email')
+        cv = request.POST.get('cv')
         telephone = request.POST.get('telephone')
         message = request.POST.get('message')
     except (KeyError, Poste.DoesNotExist):
@@ -37,11 +38,18 @@ def postuler(request, poste_id):
             prenom=prenom,
             nom=nom,
             email=email,
+            cv=cv,
             telephone=telephone,
             message=message,
         )
-
         candidat.save()
+        poste_candidat = Poste_Candidat.objects.create(
+            id_candidat=candidat,
+            id_poste=poste,
+        )
+        poste_candidat.save()
+
+
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
